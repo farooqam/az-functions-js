@@ -2,7 +2,7 @@
 const _ = require('lodash');
 const httpStatus = require('http-status');
 const check = require('./check');
-const carService = require('./carService');
+const carService = require('../shared/carService');
 
 module.exports = async function (functionContext, req) {
     functionContext.log('JavaScript HTTP trigger function processed a request.');
