@@ -20,11 +20,23 @@ describe('Car Service tests', () => {
             model.name.should.equal('Edge');
             model.year.should.equal(2019);
         });
+
+        it('Is case insensitive', () => {
+            const model = carService.getModel('FORD', 'EDGE');
+            model.make.should.equal('Ford');
+            model.name.should.equal('Edge');
+            model.year.should.equal(2019);
+        });
     });
 
     describe('Get Models for Make', () => {
         it('Returns all models for the make', () => {
             const models = carService.getModelsForMake('Ford');
+            models.length.should.equal(2);
+        });
+
+        it('Is case insensitive', () => {
+            const models = carService.getModelsForMake('FORD');
             models.length.should.equal(2);
         });
     });
