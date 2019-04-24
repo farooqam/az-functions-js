@@ -1,8 +1,9 @@
 /* eslint-disable func-names */
 const _ = require('lodash');
 const httpStatus = require('http-status');
-const check = require('./check');
+const check = require('../shared/check');
 const carService = require('../shared/carService');
+const settings = require('../shared/settings');
 
 module.exports = async function (functionContext, req) {
     functionContext.log('JavaScript HTTP trigger function processed a request.');
@@ -19,7 +20,7 @@ module.exports = async function (functionContext, req) {
         return;
     }
 
-    let resultSize = process.env.QueryOptions__MaxResultSize || 100;
+    let resultSize = settings('QueryOptions__MaxResultSize') || 100;
 
     if (take && (take < resultSize)) {
         resultSize = take;
