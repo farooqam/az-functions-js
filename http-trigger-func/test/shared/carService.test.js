@@ -5,37 +5,33 @@ const carService = require('../../shared/carService');
 
 const should = chai.should();
 
-describe('Car Service tests', () => {
-    describe('Get Models', () => {
-        it('Returns all models', () => {
+describe('carService', () => {
+    describe('getModels', () => {
+        it('returns all models', () => {
             const models = carService.getModels();
             models.length.should.equal(4);
         });
     });
 
-    describe('Get Model', () => {
-        it('Returns one model', () => {
+    describe('getModel', () => {
+        it('returns one model', () => {
             const model = carService.getModel('ford', 'edge');
-            model.make.should.equal('Ford');
-            model.name.should.equal('Edge');
-            model.year.should.equal(2019);
+            model.should.deep.equal({ make: 'Ford', name: 'Edge', year: 2019 });
         });
 
-        it('Is case insensitive', () => {
+        it('is case insensitive', () => {
             const model = carService.getModel('FORD', 'EDGE');
-            model.make.should.equal('Ford');
-            model.name.should.equal('Edge');
-            model.year.should.equal(2019);
+            model.should.deep.equal({ make: 'Ford', name: 'Edge', year: 2019 });
         });
     });
 
-    describe('Get Models for Make', () => {
-        it('Returns all models for the make', () => {
+    describe('getModelsForMake', () => {
+        it('returns all models for the make', () => {
             const models = carService.getModelsForMake('Ford');
             models.length.should.equal(2);
         });
 
-        it('Is case insensitive', () => {
+        it('is case insensitive', () => {
             const models = carService.getModelsForMake('FORD');
             models.length.should.equal(2);
         });
